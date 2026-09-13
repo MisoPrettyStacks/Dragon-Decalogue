@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "tuned_on": "dragonfly-benchmark-200 (seed 20261)",
+  "agent_weights": {
+    "reference_class": 0.14,
+    "trend_extrapolation": 0.12,
+    "bayesian_update": 0.18,
+    "status_quo": 0.08,
+    "market_signal": 0.2,
+    "expert_panel": 0.13,
+    "time_hazard": 0.06,
+    "volatility_damped": 0.09
+  },
+  "extremizing_exponent": 1.5,
+  "calibration_slope": 1.0,
+  "calibration_intercept": 0.0
+}
