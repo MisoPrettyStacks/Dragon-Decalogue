@@ -2,7 +2,7 @@
 
 A forecasting engine inspired by Philip Tetlock's *Superforecasting*: eight independent lenses (agents) pooled in log-odds space, tuned on a 200-question benchmark.
 
-**Certified Brier score: 0.07777** (target band: 0.075–0.085)
+**Goal Brier score: 0.07777** (target band: 0.075–0.085)
 
 ## The Eight Agents
 
