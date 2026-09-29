@@ -166,8 +166,7 @@ No API keys. No paid services. No randomness at inference time. Run locally, aud
 
 ## License
 
-MIT. Edit weights.json. Disagree with us. Report performance.
-
+MIT. 
 ---
 
 Built on Tetlock's *Superforecasting* and the Good Judgment Project's research into ensemble forecasting and calibration.
