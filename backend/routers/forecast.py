@@ -94,7 +94,8 @@ async def create_question(payload: QuestionCreate) -> Question:
 
 @router.get("/questions", response_model=List[QuestionSummary])
 async def list_questions() -> List[QuestionSummary]:
-    docs = await db.questions.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    finder = await db.questions.find({}, {"_id": 0})
+    docs = await finder.sort("created_at", -1).to_list(500)
     return [QuestionSummary(**d) for d in docs]
 
 

@@ -1,6 +1,6 @@
 """DragonflyDecalogue API server."""
 
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers.forecast import router as forecast_router
@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # Include routers
-api_router = FastAPI()
+api_router = APIRouter()
 api_router.include_router(forecast_router)
 app.include_router(api_router, prefix="/api")
 

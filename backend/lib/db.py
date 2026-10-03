@@ -3,6 +3,29 @@
 from typing import Any, Dict, List, Optional
 
 
+class FindResult:
+    """Result of a find query."""
+
+    def __init__(self, docs):
+        self.docs = list(docs)
+
+    def sort(self, field: str, direction: int):
+        """Sort results."""
+        self.docs.sort(key=lambda d: d.get(field), reverse=(direction == -1))
+        return self
+
+    async def to_list(self, limit: Optional[int] = None) -> List[Dict]:
+        """Convert to list."""
+        return self.docs[:limit] if limit else self.docs
+
+
+class DeleteResult:
+    """Result of a delete query."""
+
+    def __init__(self, deleted_count: int):
+        self.deleted_count = deleted_count
+
+
 class SimpleDB:
     """Simple in-memory database."""
 
@@ -33,29 +56,6 @@ class SimpleDB:
                 del self.questions[doc_id]
                 return DeleteResult(deleted_count=1)
         return DeleteResult(deleted_count=0)
-
-
-class FindResult:
-    """Result of a find query."""
-
-    def __init__(self, docs):
-        self.docs = list(docs)
-
-    def sort(self, field: str, direction: int):
-        """Sort results."""
-        self.docs.sort(key=lambda d: d.get(field), reverse=(direction == -1))
-        return self
-
-    async def to_list(self, limit: Optional[int] = None) -> List[Dict]:
-        """Convert to list."""
-        return self.docs[:limit] if limit else self.docs
-
-
-class DeleteResult:
-    """Result of a delete query."""
-
-    def __init__(self, deleted_count: int):
-        self.deleted_count = deleted_count
 
 
 class QuestionsCollection:
