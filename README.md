@@ -3,7 +3,7 @@ This is not Tool or Service: This is a private, experimental sandbox, not intend
 
 # DragonflyDecalogue
 
-A forecasting engine inspired by Philip Tetlock's *Superforecasting*: eight independent lenses (agents) pooled in log-odds space, tuned on a 200-question benchmark.
+A structured forecasting engine: eight independent lenses (agents) pooled in log-odds space, tuned on a 200-question benchmark.
 
 **Goal Brier score: 0.07777** (target band: 0.075–0.085)
 
@@ -70,7 +70,7 @@ Server runs on `http://localhost:8000`. OpenAPI docs at `/docs`.
 
 ### Decalogue
 
-- `GET /api/decalogue` — Tetlock's eleven commandments, wired to the engine
+- `GET /api/decalogue` — eleven forecasting commandments, wired to the engine
 
 ### Bundle
 
@@ -152,7 +152,7 @@ backend/
 6. **Distinguish as many degrees of doubt as the problem permits** — No rounding to thirds
 7. **Strike a balance between under- and overconfidence** — Calibrate, don't posture
 8. **Look for the errors behind your mistakes** — Post-mortem every resolution
-9. **Bring out the best in others** — Team of superforecasters beats individuals
+9. **Bring out the best in others** — Team of forecasters beats individuals
 10. **Master the error-balancing bicycle** — Practice with unambiguous feedback
 11. **Don't treat commandments as commandments** — Every weight is editable
 
@@ -172,7 +172,7 @@ No API keys. No paid services. No randomness at inference time. Run locally, aud
 MIT. 
 ---
 
-Built on Tetlock's methodology.
+Built on a structured, evidence-driven methodology.
 
 Made with 💖 by: @MisoPrettyStacks
 

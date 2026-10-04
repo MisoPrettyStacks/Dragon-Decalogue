@@ -7,7 +7,7 @@ from routers.forecast import router as forecast_router
 
 app = FastAPI(
     title="DragonflyDecalogue",
-    description="Tetlock-inspired forecasting engine with eight aggregated lenses",
+    description="Structured forecasting engine with eight aggregated lenses",
     version="1.0.0",
 )
 

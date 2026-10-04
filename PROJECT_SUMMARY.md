@@ -180,7 +180,7 @@ Add to COMMANDMENTS list in `backend/lib/decalogue.py`.
 
 ## Philosophy
 
-Built on Philip Tetlock's *Superforecasting*:
+Built on structured forecasting principles:
 - Eight lenses beat one (ensemble wisdom)
 - Log-odds aggregation handles edge cases (0.01–0.99 clamp)
 - Extremizing exponent (1.5) reflects base rate bias

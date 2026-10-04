@@ -233,4 +233,4 @@ uvicorn server:app --port 8001
 
 ---
 
-Built on Tetlock's *Superforecasting* principles. No APIs. No secrets. Reproducible.
+Built on structured forecasting principles. No APIs. No secrets. Reproducible.

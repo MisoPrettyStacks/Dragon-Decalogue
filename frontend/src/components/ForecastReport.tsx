@@ -187,7 +187,7 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       <div className="border-2 border-ink bg-white p-5 shadow-hard">
         <p className="mb-2 text-xs text-gray-600">
           Crowds are underconfident on average — multiply the pooled log-odds by the tuned
-          extremizing exponent (Tetlock/Satopaa a-extremization):
+          extremizing exponent (a-extremization):
         </p>
         <MathLine
           text={`extremized = ${fmt(result.extremizing_exponent, 2)} × ${fmt(result.pooled_logit)} = ${fmt(result.extremized_logit)}`}

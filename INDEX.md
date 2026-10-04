@@ -299,7 +299,7 @@ curl -O http://localhost:8000/api/bundle/source.zip
 
 ## 🧠 Philosophy
 
-Built on Philip Tetlock's *Superforecasting* principles:
+Built on structured forecasting principles:
 
 1. **Triage** — Focus on tractable questions
 2. **Decompose** — Break into sub-problems
@@ -382,8 +382,6 @@ A: Yes. Download the ZIP from `/api/bundle/source.zip`. It's completely self-con
 
 ## 🎓 Learning Resources
 
-- **Tetlock, P.** (2015) *Superforecasting*
-- **Good Judgment Project** research (calibration, aggregation)
 - **Satopaa et al.** (2014) on extremizing exponents
 - **Brier, G.** (1950) on proper scoring rules
 

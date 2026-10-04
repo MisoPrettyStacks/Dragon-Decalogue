@@ -1,4 +1,4 @@
-"""The Dragonfly Decalogue — Tetlock's ten commandments, wired to the engine."""
+"""The Dragonfly Decalogue — ten commandments of forecasting, wired to the engine."""
 
 from typing import Any, Dict, List
 
@@ -54,7 +54,7 @@ COMMANDMENTS: List[Dict[str, Any]] = [
     {
         "number": 9,
         "title": "Bring out the best in others",
-        "body": "Precision questioning, constructive confrontation, perspective taking. Teams of superforecasters beat individuals.",
+        "body": "Precision questioning, constructive confrontation, perspective taking. Teams of forecasters beat individuals.",
         "engine_hook": "Eight independent agents are pooled, never overruled by a single lens.",
     },
     {

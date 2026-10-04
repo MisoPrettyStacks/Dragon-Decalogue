@@ -3,7 +3,7 @@
 Thirty-thousand lenses, distilled into eight ommatidia. Every agent is a pure,
 deterministic function of a question's feature vector -- no network calls, no
 paid APIs, no randomness at inference time. Aggregation happens in log-odds
-space, with a tuned extremizing exponent (Tetlock/Satopaa "a-extremization").
+space, with a tuned extremizing exponent ("a-extremization").
 """
 
 from __future__ import annotations
