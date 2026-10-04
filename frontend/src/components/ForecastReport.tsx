@@ -11,6 +11,11 @@ import type {
   Commandment,
   PreviewResult,
 } from "../lib/api";
+import {
+  agentReasoning,
+  answerParagraph,
+  verdictWord,
+} from "../lib/reasoning";
 
 /** Highlight numbers inside a math line. */
 function MathLine({ text }: { text: string }) {
@@ -54,6 +59,17 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       {/* Question */}
       <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Question</p>
       <h2 className="mt-1 text-lg font-extrabold leading-snug">{question}</h2>
+
+      {/* Answer */}
+      <h3 className="report-h2">The Answer</h3>
+      <div className="border-2 border-ink bg-white p-5 shadow-hard">
+        <p>
+          <span className="pill text-2xl">
+            {pct(result.probability)} — {verdictWord(result.probability)}
+          </span>
+        </p>
+        <p className="mt-4 text-sm leading-relaxed">{answerParagraph(result)}</p>
+      </div>
 
       {/* Final forecast */}
       <h3 className="report-h2">Final Forecast</h3>
@@ -138,6 +154,10 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
                 <span className="pill text-sm">{pct(b.probability)}</span>
               </div>
               <p className="mt-1 text-xs italic text-gray-600">{b.rationale}</p>
+              <p className="mt-2 border-l-4 border-magenta bg-gray-50 px-2 py-1 text-xs leading-relaxed">
+                <span className="font-extrabold uppercase">In plain words: </span>
+                {agentReasoning(b.agent, result.features as unknown as Features, b.probability)}
+              </p>
               <p className="mt-2 border-2 border-dashed border-gray-300 bg-gray-50 px-2 py-1 text-xs">
                 formula: <span className="font-bold">{b.formula}</span>
               </p>
@@ -166,8 +186,11 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       {/* Step 2 — pooling */}
       <h3 className="report-h2">Step 2 · Pool in log-odds space</h3>
       <div className="border-2 border-ink bg-white p-5 shadow-hard">
-        <p className="mb-2 text-xs text-gray-600">
-          Weighted average of the eight log-odds. Each term is weight × logit(p):
+        <p className="mb-2 text-xs leading-relaxed text-gray-700">
+          <span className="font-extrabold uppercase">Why this step exists: </span>
+          eight opinions need one number. Averaging in log-odds space (instead of raw
+          probabilities) keeps a single extreme lens from hijacking the result — a 99% and a 1%
+          cancel out instead of averaging to a misleading 50%.
         </p>
         {result.breakdown.map((b) => (
           <MathLine
@@ -185,9 +208,12 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       {/* Step 3 — extremize */}
       <h3 className="report-h2">Step 3 · Extremize</h3>
       <div className="border-2 border-ink bg-white p-5 shadow-hard">
-        <p className="mb-2 text-xs text-gray-600">
-          Crowds are underconfident on average — multiply the pooled log-odds by the tuned
-          extremizing exponent (a-extremization):
+        <p className="mb-2 text-xs leading-relaxed text-gray-700">
+          <span className="font-extrabold uppercase">Why this step exists: </span>
+          pooled judgments are systematically underconfident — they huddle too close to 50%.
+          Multiplying the log-odds pushes the estimate outward to where the evidence actually
+          points. The exponent {fmt(result.extremizing_exponent, 2)} was tuned on the 200-question
+          benchmark, not guessed.
         </p>
         <MathLine
           text={`extremized = ${fmt(result.extremizing_exponent, 2)} × ${fmt(result.pooled_logit)} = ${fmt(result.extremized_logit)}`}
@@ -197,8 +223,12 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       {/* Step 4 — calibrate */}
       <h3 className="report-h2">Step 4 · Calibrate</h3>
       <div className="border-2 border-ink bg-white p-5 shadow-hard">
-        <p className="mb-2 text-xs text-gray-600">
-          Linear recalibration fitted on the 200-question benchmark:
+        <p className="mb-2 text-xs leading-relaxed text-gray-700">
+          <span className="font-extrabold uppercase">Why this step exists: </span>
+          even after extremizing, the engine had a measurable bias on the 200 benchmark questions
+          — consistently a touch too hot or too cold. This linear correction (slope{" "}
+          {fmt(result.calibration_slope, 2)}, intercept {fmt(result.calibration_intercept, 2)})
+          removes that bias so a stated 70% actually happens about 70% of the time.
         </p>
         <MathLine
           text={`calibrated = ${fmt(result.calibration_slope, 4)} × ${fmt(result.extremized_logit)} + ${fmt(result.calibration_intercept, 4)} = ${fmt(result.calibrated_logit)}`}
@@ -208,6 +238,11 @@ export function ForecastReport({ question, rawFeatures, result, calibration, com
       {/* Step 5 — sigmoid */}
       <h3 className="report-h2">Step 5 · Back to probability</h3>
       <div className="border-2 border-ink bg-white p-5 shadow-hard">
+        <p className="mb-2 text-xs leading-relaxed text-gray-700">
+          <span className="font-extrabold uppercase">Why this step exists: </span>
+          log-odds are how the machine thinks, but humans think in chances. The sigmoid converts
+          back to a plain probability — the number at the top of this report.
+        </p>
         <MathLine text={`σ(${fmt(result.calibrated_logit)}) = ${fmt(sigmoid(result.calibrated_logit))}`} />
         <p className="mt-3 text-xs text-gray-600">
           Clamped to [0.01, 0.99]. Disagreement = spread of the eight agents ={" "}
