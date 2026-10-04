@@ -55,6 +55,8 @@ class Question(BaseModel):
     extremized_logit: float
     calibrated_logit: float
     extremizing_exponent: float
+    calibration_slope: float
+    calibration_intercept: float
     probability: float
     disagreement: float
     confidence: float
@@ -138,6 +140,8 @@ class PreviewResult(BaseModel):
     extremized_logit: float
     calibrated_logit: float
     extremizing_exponent: float
+    calibration_slope: float
+    calibration_intercept: float
     probability: float
     disagreement: float
     confidence: float

@@ -245,6 +245,8 @@ def forecast(raw_features: Dict[str, Any]) -> Dict[str, Any]:
         "extremized_logit": round(agg["extremized_logit"], 6),
         "calibrated_logit": round(agg["calibrated_logit"], 6),
         "extremizing_exponent": weights["extremizing_exponent"],
+        "calibration_slope": weights["calibration_slope"],
+        "calibration_intercept": weights["calibration_intercept"],
         "probability": round(agg["probability"], 6),
         "disagreement": round(spread, 6),
         "confidence": round(clamp(1.0 - spread, 0.0, 1.0), 6),

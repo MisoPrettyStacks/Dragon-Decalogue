@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  background: #ffffff;
+}
+
+::selection {
+  background: #ff2ea6;
+  color: #ffffff;
+}
+
+/* Thin, on-brand scrollbar for the history sidebar */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #c8ff3d;
+}
+
+/* Report section headers — black pill, magenta hard shadow */
+.report-h2 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: #0a0a0a;
+  color: #ffffff;
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  margin: 1.75rem 0 0.75rem;
+  box-shadow: 3px 3px 0 0 #ff2ea6;
+}
+.report-h2:first-child {
+  margin-top: 0;
+}
+
+/* Lime highlight pill, like orange's == == rendering */
+.pill {
+  display: inline-block;
+  background: #c8ff3d;
+  color: #0a0a0a;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border: 2px solid #0a0a0a;
+  box-shadow: 2px 2px 0 0 #0a0a0a;
+}
+
+/* Monospace math lines */
+.mathline {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.mathline .num {
+  color: #ff2ea6;
+  font-weight: 700;
+}
+
+/* Range slider styling to match the theme */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #0a0a0a;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #ff2ea6;
+  border: 2px solid #0a0a0a;
+  box-shadow: 2px 2px 0 0 #0a0a0a;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #ff2ea6;
+  border: 2px solid #0a0a0a;
+  box-shadow: 2px 2px 0 0 #0a0a0a;
+  cursor: pointer;
+  border-radius: 0;
+}

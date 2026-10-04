@@ -82,6 +82,8 @@ async def create_question(payload: QuestionCreate) -> Question:
                 "extremized_logit",
                 "calibrated_logit",
                 "extremizing_exponent",
+                "calibration_slope",
+                "calibration_intercept",
                 "probability",
                 "disagreement",
                 "confidence",
